@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deploy
+  labels:
+    name: my-first-deploy
+    app : first-app
+    owner: ya
+
+spec:
+  selector:
+    matchLabels:
+      project: atmta
+  template:
+    metadata:
+      labels:
+        project: atmta
+    spec:
+      containers:
+      - name: web-app-1
+        image: souchan410/kuberlearn:latest
+        ports:
+        - containerPort: 80
