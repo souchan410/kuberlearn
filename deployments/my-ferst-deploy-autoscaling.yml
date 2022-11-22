@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deploy-autoscale
+  labels:
+    name: my-first-deploy-autoscale
+    app : first-app
+    owner: ya
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: peep
+  template:
+    metadata:
+      labels:
+        project: peep
+    spec:
+      containers:
+      - name: web-app-1-otm
+        image: souchan410/kuberlearn:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-auto
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-first-deploy-autoscale
+  minReplicas: 3
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 80
