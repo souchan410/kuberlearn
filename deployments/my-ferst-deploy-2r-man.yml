@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deploy-2rep
+  labels:
+    name: my-first-deploy-2rep
+    app : first-app
+    owner: ya
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: otment
+  template:
+    metadata:
+      labels:
+        project: otment
+    spec:
+      containers:
+      - name: web-app-1-otm
+        image: souchan410/kuberlearn:latest
+        ports:
+        - containerPort: 80
