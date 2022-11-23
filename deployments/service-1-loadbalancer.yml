@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment-with-svc
+  labels:
+    app: first-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: first-app
+  template:
+    metadata    :
+      labels    :
+        app     : atmta-web
+        project : atmta
+    spec:
+      containers:
+      - name  : web-app-1
+        image : souchan410/kuberlearn:latest
+        ports :
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: single-pod-svc
+  labels:
+    owner  : sou
+    app    : first-app
+spec:
+  selector:
+    project   : atmta
+  ports:
+  - name      : app-listener
+    protocol  : TCP
+    port      : 80  # Port na balancere
+    targetPort: 80  # port na POD
+  type: LoadBalancer
