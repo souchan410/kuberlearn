@@ -9,7 +9,6 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: first-app
       project: atmta
   template:
     metadata    :
