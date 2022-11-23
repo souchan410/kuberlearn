@@ -38,4 +38,4 @@ spec :
     protocol  : TCP
     port      : 80  # Port na balancere
     targetPort: 80  # port na POD
-  type: LoadBalancer
+  type: NodePort
