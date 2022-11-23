@@ -4,6 +4,7 @@ metadata:
   name: my-deployment-with-svc
   labels:
     app: first-app
+    project: atmta
 spec:
   replicas: 3
   selector:
@@ -29,9 +30,9 @@ metadata:
   labels:
     owner  : sou
     app    : first-app
-spec:
-  selector:
-    project   : atmta
+spec :
+  selector  :
+    project : atmta
   ports:
   - name      : app-listener
     protocol  : TCP
