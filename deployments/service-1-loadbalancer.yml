@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: first-app
+      project: atmta
   template:
     metadata    :
       labels    :
